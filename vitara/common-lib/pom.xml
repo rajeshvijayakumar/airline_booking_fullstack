@@ -9,6 +9,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
+    <groupId>com.vitara.common</groupId>
     <artifactId>common-lib</artifactId>
     <packaging>jar</packaging>
 
