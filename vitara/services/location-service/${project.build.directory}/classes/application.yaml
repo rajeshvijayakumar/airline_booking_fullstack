@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: location-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/vitara_location_db
+    username: root
+    password: root
