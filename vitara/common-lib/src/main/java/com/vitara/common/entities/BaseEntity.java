@@ -33,4 +33,14 @@ public class BaseEntity {
     @CreatedBy  // need to set during auditing
     @Column(name = "created_by", length = 20, updatable = false)
     private String createdBy;
+
+    @LastModifiedDate  // need to set during auditing
+    @UpdateTimestamp
+    @Column(name = "updated_at", insertable = false)
+    private Instant updatedAt;
+
+    @Column(name = "updated_by", length = 20, insertable = false)
+    @LastModifiedBy  // need to set during auditing
+    private String updatedBy;
+
 }
