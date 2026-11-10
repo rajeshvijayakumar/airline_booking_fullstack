@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class GeoCode extends BaseEntity {
+public class GeoCode {
     private Double latitude;
     private Double longitude;
 }

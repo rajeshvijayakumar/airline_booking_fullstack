@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Address extends BaseEntity {
+public class Address {
     private String street;
     private String postalCode;
 }

@@ -5,6 +5,7 @@ import com.vitara.common.location.entities.GeoCode;
 import com.vitara.common.entities.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 @Entity
 @Table(name = "airports", indexes = {
@@ -14,6 +15,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Airport extends BaseEntity {
 
     @Id
@@ -41,4 +43,13 @@ public class Airport extends BaseEntity {
 
     @Embedded
     private GeoCode geoCode;
+
+    @JsonIgnore
+    @Transient
+    public String getDetailedName(){
+        if(city!=null && city.getCountryCode()!=null){
+            return name.toUpperCase() + "/" + city.getCityCode();
+        }
+        return name.toUpperCase();
+    }
 }
