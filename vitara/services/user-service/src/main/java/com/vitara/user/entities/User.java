@@ -18,7 +18,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-public class User extends BaseEntity {
+@Builder
+public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +44,8 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private Boolean verified = false;
 
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private LocalDateTime lastLogin;
 }
 
