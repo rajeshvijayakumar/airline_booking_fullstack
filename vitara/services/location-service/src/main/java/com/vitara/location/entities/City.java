@@ -16,6 +16,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class City extends BaseEntity {
 
     @Id
