@@ -37,13 +37,13 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-webmvc</artifactId>
+                <artifactId>spring-boot-starter-web</artifactId>
             </dependency>
             <!-- Source: https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api -->
             <dependency>
                 <groupId>jakarta.persistence</groupId>
                 <artifactId>jakarta.persistence-api</artifactId>
-                <version>4.0.0-M7</version>
+                <version>3.2.0</version>
                 <optional>true</optional>
             </dependency>
             <dependency>
