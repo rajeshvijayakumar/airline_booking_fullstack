@@ -1,7 +1,7 @@
 package com.vitara.location.controller;
 
 import com.vitara.common.location.request.CityRequest;
-import com.vitara.common.location.response.ApiResponse;
+import com.vitara.common.response.ApiResponse;
 import com.vitara.common.location.response.CityResponse;
 import com.vitara.location.service.CityService;
 import jakarta.validation.Valid;

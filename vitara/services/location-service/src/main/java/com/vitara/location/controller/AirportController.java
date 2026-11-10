@@ -2,7 +2,7 @@ package com.vitara.location.controller;
 
 import com.vitara.common.location.request.AirportRequest;
 import com.vitara.common.location.response.AirportResponse;
-import com.vitara.common.location.response.ApiResponse;
+import com.vitara.common.response.ApiResponse;
 import com.vitara.location.service.AirportService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

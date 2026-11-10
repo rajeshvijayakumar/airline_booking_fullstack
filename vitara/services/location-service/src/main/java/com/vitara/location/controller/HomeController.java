@@ -1,6 +1,6 @@
 package com.vitara.location.controller;
 
-import com.vitara.common.location.response.ApiResponse;
+import com.vitara.common.response.ApiResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

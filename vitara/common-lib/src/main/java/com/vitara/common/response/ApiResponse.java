@@ -1,4 +1,4 @@
-package com.vitara.common.location.response;
+package com.vitara.common.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
