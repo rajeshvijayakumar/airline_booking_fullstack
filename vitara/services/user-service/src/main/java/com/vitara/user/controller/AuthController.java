@@ -2,6 +2,7 @@ package com.vitara.user.controller;
 
 import com.vitara.common.dto.UserDto;
 import com.vitara.common.request.LoginRequest;
+import com.vitara.common.request.SignUpRequest;
 import com.vitara.common.response.AuthResponse;
 import com.vitara.user.service.AuthService;
 import jakarta.validation.Valid;
@@ -21,9 +22,9 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> signup(
-            @RequestBody @Valid UserDto userDTO
+            @RequestBody @Valid SignUpRequest signUpRequest
     ) throws Exception {
-        AuthResponse response=authService.signup(userDTO);
+        AuthResponse response=authService.signup(signUpRequest);
         return ResponseEntity.ok(response);
     }
 

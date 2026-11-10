@@ -2,6 +2,7 @@ package com.vitara.user.service.impl;
 
 import com.vitara.common.dto.UserDto;
 import com.vitara.common.enums.UserRole;
+import com.vitara.common.request.SignUpRequest;
 import com.vitara.common.response.AuthResponse;
 import com.vitara.user.config.JwtProvider;
 import com.vitara.user.entities.User;
@@ -35,7 +36,7 @@ public class AuthServiceImpl implements AuthService {
     */
 
     @Override
-    public AuthResponse signup(UserDto req) throws Exception {
+    public AuthResponse signup(SignUpRequest req) throws Exception {
         User existingUser=userRepository.findByEmail(req.getEmail());
         if(existingUser!=null){
             throw new Exception("email already registered!");
@@ -52,6 +53,7 @@ public class AuthServiceImpl implements AuthService {
                 .fullName(req.getFullName())
                 .lastLogin(LocalDateTime.now())
                 .createdAt(LocalDateTime.now())
+                .verified(false)
                 .updatedAt(LocalDateTime.now())
                 .build();
 
