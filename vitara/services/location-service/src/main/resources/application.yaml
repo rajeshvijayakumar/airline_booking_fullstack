@@ -2,9 +2,18 @@ server:
   port: 8080
 
 spring:
+  main:
+    web-application-type: servlet
   application:
     name: location-service
   datasource:
     url: jdbc:mysql://localhost:3306/vitara_location_db
     username: root
     password: root
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  sql:
+    init:
+      mode: always
