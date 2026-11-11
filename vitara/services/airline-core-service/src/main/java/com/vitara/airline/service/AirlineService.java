@@ -11,11 +11,17 @@ import java.util.List;
 
 public interface AirlineService {
 
-    AirlineResponse createAirline(AirlineRequest request, Long ownerId);
+    // FIX: Added throws Exception to allow validation checks on creation
+    AirlineResponse createAirline(AirlineRequest request, Long ownerId) throws Exception;
+
     AirlineResponse getAirlineByOwner(Long ownerId) throws Exception;
+
     AirlineResponse getAirlineById(Long id) throws Exception;
+
     Page<AirlineResponse> getAllAirlines(Pageable pageable);
+
     AirlineResponse updateAirline(AirlineRequest request, Long ownerId) throws Exception;
+
     void deleteAirline(Long id, Long ownerId) throws Exception;
 
     AirlineResponse changeStatusByAdmin(Long airlineId, AirlineStatus status) throws Exception;
