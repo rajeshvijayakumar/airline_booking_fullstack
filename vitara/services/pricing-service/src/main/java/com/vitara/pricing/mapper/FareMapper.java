@@ -111,6 +111,9 @@ public class FareMapper {
                 // Premium service benefits
                 .loungeAccess(fare.getPremiumServiceBenefits() != null ? fare.getPremiumServiceBenefits().getLoungeAccess() : false)
                 .airportTransfer(fare.getPremiumServiceBenefits() != null ? fare.getPremiumServiceBenefits().getAirportTransfer() : false)
+
+                // Nested responses
+                .fareRules(fare.getFareRules() != null ? FareRuleMapper.toResponse(fare.getFareRules()) : null)
                 .createdAt(fare.getCreatedAt())
                 .updatedAt(fare.getUpdatedAt())
                 .build();
