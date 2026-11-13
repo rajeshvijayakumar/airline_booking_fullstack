@@ -114,6 +114,8 @@ public class FareMapper {
 
                 // Nested responses
                 .fareRules(fare.getFareRules() != null ? FareRuleMapper.toResponse(fare.getFareRules()) : null)
+                .baggagePolicy(fare.getBaggagePolicy() != null ?
+                        BaggagePolicyMapper.toResponse(fare.getBaggagePolicy()) : null)
                 .createdAt(fare.getCreatedAt())
                 .updatedAt(fare.getUpdatedAt())
                 .build();
