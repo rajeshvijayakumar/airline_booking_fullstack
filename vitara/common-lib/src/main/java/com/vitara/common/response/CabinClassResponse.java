@@ -25,4 +25,5 @@ public class CabinClassResponse {
     private String seatType;
     private Instant createdAt;
     private Instant updatedAt;
+    private SeatMapResponse seatMap;
 }

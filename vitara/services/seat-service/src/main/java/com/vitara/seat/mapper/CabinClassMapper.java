@@ -4,6 +4,7 @@ package com.vitara.seat.mapper;
 import com.vitara.common.request.CabinClassRequest;
 import com.vitara.common.response.CabinClassResponse;
 import com.vitara.seat.entities.CabinClass;
+import com.vitara.seat.entities.SeatMap;
 
 public class CabinClassMapper {
 
@@ -24,7 +25,7 @@ public class CabinClassMapper {
                 .build();
     }
 
-    public static CabinClassResponse toResponse(CabinClass cabinClass) {
+    public static CabinClassResponse toResponse(CabinClass cabinClass, SeatMap seatMap) {
         if (cabinClass == null) return null;
         return CabinClassResponse.builder()
                 .id(cabinClass.getId())
@@ -32,7 +33,7 @@ public class CabinClassMapper {
                 .code(cabinClass.getCode())
                 .description(cabinClass.getDescription())
                 .aircraftId(cabinClass.getAircraftId())
-
+                .seatMap(seatMap != null ? SeatMapMapper.toResponse(seatMap) : null)
                 .displayOrder(cabinClass.getDisplayOrder())
                 .isActive(cabinClass.getIsActive())
                 .isBookable(cabinClass.getIsBookable())
