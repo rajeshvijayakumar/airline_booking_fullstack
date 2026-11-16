@@ -36,10 +36,10 @@ public class BaseEntity {
 
     @LastModifiedDate  // need to set during auditing
     @UpdateTimestamp
-    @Column(name = "updated_at", insertable = false)
+    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
-    @Column(name = "updated_by", length = 20, insertable = false)
+    @Column(name = "updated_by", length = 20)
     @LastModifiedBy  // need to set during auditing
     private String updatedBy;
 

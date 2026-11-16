@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 //AIRLINE-CORE-SERVICE
-@FeignClient(name = "airline-core-service")
+@FeignClient(name = "airline-core-service", url = "http://localhost:9080")
 public interface AirlineClient {
 
     @GetMapping("/api/airlines/{id}")
