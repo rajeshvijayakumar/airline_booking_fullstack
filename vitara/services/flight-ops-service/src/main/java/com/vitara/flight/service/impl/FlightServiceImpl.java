@@ -12,10 +12,13 @@ import com.vitara.flight.entities.Flight;
 import com.vitara.flight.mapper.FlightMapper;
 import com.vitara.flight.repository.FlightRepository;
 import com.vitara.flight.service.FlightService;
+import com.vitara.flight.service.interservice.AircraftIntegrationService;
+import com.vitara.flight.service.interservice.AirlineIntegrationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,11 +26,14 @@ public class FlightServiceImpl implements FlightService {
 
 
     private final FlightRepository flightRepository;
+    private final AirlineIntegrationService airlineIntegrationService;
+    private final AircraftIntegrationService aircraftIntegrationService;
     private final AirlineClient airlineClient;
     private final LocationClient locationClient;
 
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public FlightResponse createFlight(Long userId, FlightRequest flightRequest) throws Exception {
 
 //        fetch airline by owner id
@@ -74,6 +80,7 @@ public class FlightServiceImpl implements FlightService {
 
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public FlightResponse updateFlight(Long id, FlightRequest flightRequest) throws Exception {
         Flight existing = flightRepository.findById(id).orElseThrow(
                 ()-> new Exception("flight not found with id")
@@ -109,8 +116,8 @@ public class FlightServiceImpl implements FlightService {
     public FlightResponse convertToFlightResponse(Flight flight) {
 //        service to service communication
 
-        AircraftResponse aircraft=airlineClient.getAircraftById(flight.getAircraftId());
-        AirlineResponse airline= airlineClient.getAirlineById(flight.getAirlineId());
+        AircraftResponse aircraft=aircraftIntegrationService.getAircraftById(flight.getAircraftId());
+        AirlineResponse airline = airlineIntegrationService.getAirlineById(flight.getAirlineId());
         AirportResponse departureAirport= locationClient.getAirportById(flight.getDepartureAirportId());
         AirportResponse arrivalAirport= locationClient.getAirportById(flight.getArrivalAirportId());
 
