@@ -2,6 +2,7 @@ package com.vitara.common.response;
 
 import com.vitara.common.embeddable.ContactInfo;
 import com.vitara.common.enums.BookingStatus;
+import com.vitara.common.enums.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -44,8 +45,8 @@ public class BookingResponse {
     private List<TicketResponse> tickets;
 
 //    // Payment details
-//    private PaymentStatus paymentStatus;
-//    private String paymentLink;
+    private PaymentStatus paymentStatus;
+    private String paymentLink;
 
 
     private Long fareId;
