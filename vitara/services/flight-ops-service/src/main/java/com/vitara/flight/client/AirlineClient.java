@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 
 //AIRLINE-CORE-SERVICE
-@FeignClient(name = "airline-core-service", url = "http://localhost:9080")
+//@FeignClient(name = "airline-core-service", url = "http://localhost:9080")
+@FeignClient(name = "airline-core-service") // If you are using service-registry eureka, no need of passing the url..
 public interface AirlineClient {
 
     @GetMapping("/api/airlines/{id}")

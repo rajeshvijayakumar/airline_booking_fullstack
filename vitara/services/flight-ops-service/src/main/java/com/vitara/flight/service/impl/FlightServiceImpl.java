@@ -12,8 +12,6 @@ import com.vitara.flight.entities.Flight;
 import com.vitara.flight.mapper.FlightMapper;
 import com.vitara.flight.repository.FlightRepository;
 import com.vitara.flight.service.FlightService;
-import com.vitara.flight.service.interservice.AircraftIntegrationService;
-import com.vitara.flight.service.interservice.AirlineIntegrationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,8 +24,6 @@ public class FlightServiceImpl implements FlightService {
 
 
     private final FlightRepository flightRepository;
-    private final AirlineIntegrationService airlineIntegrationService;
-    private final AircraftIntegrationService aircraftIntegrationService;
     private final AirlineClient airlineClient;
     private final LocationClient locationClient;
 
@@ -116,8 +112,8 @@ public class FlightServiceImpl implements FlightService {
     public FlightResponse convertToFlightResponse(Flight flight) {
 //        service to service communication
 
-        AircraftResponse aircraft=aircraftIntegrationService.getAircraftById(flight.getAircraftId());
-        AirlineResponse airline = airlineIntegrationService.getAirlineById(flight.getAirlineId());
+        AircraftResponse aircraft=airlineClient.getAircraftById(flight.getAircraftId());
+        AirlineResponse airline = airlineClient.getAirlineById(flight.getAirlineId());
         AirportResponse departureAirport= locationClient.getAirportById(flight.getDepartureAirportId());
         AirportResponse arrivalAirport= locationClient.getAirportById(flight.getArrivalAirportId());
 
