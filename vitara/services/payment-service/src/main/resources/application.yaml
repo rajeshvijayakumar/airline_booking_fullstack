@@ -20,5 +20,17 @@ spring:
 #  config:
 #    import: optional:configserver:http://localhost:8888
 
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
 
+razorpay:
+  api:
+    key: "rzp_test_U1CJGBmZvarDH1"
+    secret: "8uLtU03iv5gmQqtDAniRb1Vs"
+  callback:
+      base-url: "http://localhost:9200"
 
