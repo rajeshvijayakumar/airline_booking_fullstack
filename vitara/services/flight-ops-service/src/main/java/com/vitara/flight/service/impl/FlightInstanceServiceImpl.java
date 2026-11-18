@@ -1,5 +1,6 @@
 package com.vitara.flight.service.impl;
 
+import com.vitara.common.events.FlightInstanceCreatedEvent;
 import com.vitara.common.location.response.AirportResponse;
 import com.vitara.common.request.FlightInstanceRequest;
 import com.vitara.common.response.AircraftResponse;
@@ -9,6 +10,7 @@ import com.vitara.flight.client.AirlineClient;
 import com.vitara.flight.client.LocationClient;
 import com.vitara.flight.entities.Flight;
 import com.vitara.flight.entities.FlightInstance;
+import com.vitara.flight.event.FlightInstanceEventProducer;
 import com.vitara.flight.mapper.FlightInstanceMapper;
 import com.vitara.flight.repository.FlightInstanceRepository;
 import com.vitara.flight.repository.FlightRepository;
@@ -29,7 +31,7 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
     private final FlightInstanceRepository flightInstanceRepository;
     private final AirlineClient airlineClient;
     private final LocationClient locationClient;
-//    private final FlightInstanceEventProducer flightInstanceEventProducer;
+    private final FlightInstanceEventProducer flightInstanceEventProducer;
 
     @Override
     public FlightInstanceResponse createFlightInstance(Long userId, FlightInstanceRequest request) throws Exception {
@@ -50,13 +52,13 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
 
 //        create seat instances
 //        publish kafka event, seat service consume that and create seat instance
-//        FlightInstanceCreatedEvent event=FlightInstanceCreatedEvent.builder()
-//                .flightInstanceId(flightInstance.getId())
-//                .aircraftId(flight.getAircraftId())
-//                .flightId(flight.getId())
-//                .build();
-//
-//        flightInstanceEventProducer.sendFlightInstanceCreated(event);
+        FlightInstanceCreatedEvent event=FlightInstanceCreatedEvent.builder()
+                .flightInstanceId(flightInstance.getId())
+                .aircraftId(flight.getAircraftId())
+                .flightId(flight.getId())
+                .build();
+
+        flightInstanceEventProducer.sendFlightInstanceCreated(event);
 
 
         return convertToFlightInstanceResponse(saved);
