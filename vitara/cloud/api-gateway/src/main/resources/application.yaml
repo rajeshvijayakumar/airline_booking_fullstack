@@ -1,0 +1,12 @@
+
+spring:
+  application:
+    name: api-gateway
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+server:
+  port: 9500
