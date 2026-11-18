@@ -11,6 +11,7 @@ import com.vitara.common.response.PaymentInitiateResponse;
 import com.vitara.common.response.PaymentLinkResponse;
 import com.vitara.payment.client.UserClient;
 import com.vitara.payment.entities.Payment;
+import com.vitara.payment.event.PaymentEventProducer;
 import com.vitara.payment.mapper.PaymentMapper;
 import com.vitara.payment.repository.PaymentRepository;
 import com.vitara.payment.service.PaymentService;
@@ -31,10 +32,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PaymentServiceImpl implements PaymentService {
 
-
     private final PaymentRepository paymentRepository;
     private final RazorpayService razorpayService;
     private final UserClient userClient;
+    private final PaymentEventProducer paymentEventProducer;
 
     @Override
     public PaymentInitiateResponse initiatePayment(PaymentInitiateRequest request) throws RazorpayException {
@@ -113,10 +114,8 @@ public class PaymentServiceImpl implements PaymentService {
             payment.setPaidAt(LocalDateTime.now());
             paymentRepository.save(payment);
 
-
 //          publish payment success kafka event
-
-//            paymentEventProducer.sendPaymentCompleted(payment);
+            paymentEventProducer.sendPaymentCompleted(payment);
 
         }else{
             payment.setStatus(PaymentStatus.FAILED);
@@ -124,7 +123,7 @@ public class PaymentServiceImpl implements PaymentService {
             paymentRepository.save(payment);
 
 //          publish payment failed kafka event
-//            paymentEventProducer.sendPaymentFailed(payment);
+            paymentEventProducer.sendPaymentFailed(payment);
         }
         return PaymentMapper.toDTO(payment);
     }
