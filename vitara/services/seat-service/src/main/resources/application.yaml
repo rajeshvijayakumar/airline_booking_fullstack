@@ -17,6 +17,10 @@ spring:
   sql:
     init:
       mode: always
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: seat-service-group
 
 eureka:
   client:
