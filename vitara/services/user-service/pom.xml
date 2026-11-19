@@ -125,7 +125,7 @@
                 <version>3.5.1</version>
                 <configuration>
                     <to>
-                        <image>rajeshvjlearn/yt-gds-auth:1.0.0</image>
+                        <image>rajeshvjlearn/gds-auth:1.0.0</image>
                     </to>
                 </configuration>
             </plugin>
