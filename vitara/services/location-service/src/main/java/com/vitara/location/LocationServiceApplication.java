@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication(scanBasePackages = "com.vitara")
 @EntityScan(basePackages = "com.vitara")
 @EnableJpaRepositories(basePackages = "com.vitara")
+@EnableCaching
 public class LocationServiceApplication {
 
 	public static void main(String[] args) {
